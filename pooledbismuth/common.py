@@ -129,7 +129,7 @@ class Identity(object):
         self.public = secret.publickey()
         public_key_readable = str(self.public.exportKey())
         self.public_key_hashed = base64.b64encode(public_key_readable)
-        self.address = hashlib.sha224(self.public_key_hashed).hexdigest()
+        self.address = hashlib.sha224(public_key_readable).hexdigest()                
         self.signer = PKCS1_v1_5.new(self.secret)
 
     def sign(self, data):
